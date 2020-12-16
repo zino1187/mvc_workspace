@@ -1,11 +1,7 @@
-<%@page import="board.model.Board"%>
-<%@page import="board.model.BoardDAO"%>
+<%@page import="com.webapp1216.board.model.Notice"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	//유저가 선택한 글의 pk넘겨받기
-	int board_id = Integer.parseInt(request.getParameter("board_id"));
-	BoardDAO dao = new BoardDAO();
-	Board board=dao.select(board_id);
+	Notice board=(Notice)session.getAttribute("notice");
 %>
 <!DOCTYPE html>
 <html>
@@ -65,20 +61,19 @@ $(function(){
 	
 });
 function edit(){
-	$("form").attr({
-		enctype:"multipart/form-data",
-		action:"edit.jsp", 
-		method:"post"
-	});			
-	$("form").submit();
+	if(confirm("수정하시겠어요?")){
+		$("form").attr({
+			action:"/board/edit", 
+			method:"post"
+		});			
+		$("form").submit();
+	}
 }
 
 function del(){
-	$("form").attr({
-		action:"delete.jsp", 
-		method:"post"
-	});			
-	$("form").submit();
+	if(confirm("삭제하시겠어요?")){
+		location.href="/board/delete?notice_id=<%=board.getNotice_id()%>";
+	}
 }
 
 </script>
@@ -87,9 +82,7 @@ function del(){
 	<h3>글 상세보기</h3>
 	<div class="container">
 		<form>
-			<input type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
-			<input type="hidden" name="filename" value="<%=board.getFilename()%>">
-			
+			<input type="hidden" name="board_id" value="<%=board.getNotice_id()%>">
 			<input type="text" name="title" value="<%=board.getTitle()%>">
 			<input type="text" name="writer" value="<%=board.getWriter()%>"> 
 			<textarea name="content" style="height: 200px"><%=board.getContent()%></textarea>
@@ -97,7 +90,7 @@ function del(){
 			<input type="file" name="photo"><p>
 			<input type="button" value="수정"> 
 			<input type="button" value="삭제"> 
-			<input type="button" value="목록보기" onClick="location.href='list.jsp'">
+			<input type="button" value="목록보기" onClick="location.href='/board/list'">
 		</form>
 	</div>
 

@@ -1,13 +1,13 @@
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="com.webapp1216.mybatis.config.MybatisConfigManager"%>
 <%@page import="com.webapp1216.board.model.Notice"%>
-<%@page import="com.webapp1216.board.model.NoticeDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="common.board.Pager"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	//Pager pager = new Pager();
-	//pager.init(request, list); //페이지 처리에 대한 계산!!
+	//jsp 에서는 이미 내장객체로 지원되기 때문에  session 으로 사용하면 됨 
+	List list = (List)session.getAttribute("noticeList");
+	Pager pager = new Pager();
+	pager.init(request, list); //페이지 처리에 대한 계산!!
 %>
 <!DOCTYPE html>
 <html>
@@ -42,20 +42,20 @@ tr:nth-child(even) {
 			<th>조회수</th>
 		</tr>
 		<%
-			//int num=pager.getNum();
-			//int curPos=pager.getCurPos();
+			int num=pager.getNum();
+			int curPos=pager.getCurPos();
 		%>
-		<%//for(int i=1;i<=pager.getPageSize();i++){ %>
-		<%//if(num<1)break;%>
-		<%//Notice board=(Notice)list.get(curPos++); %>
+		<%for(int i=1;i<=pager.getPageSize();i++){ %>
+		<%if(num<1)break;%>
+		<%Notice board=(Notice)list.get(curPos++); %>
 		<tr>
-			<td><%//=num--%></td>
-			<td><a href="/board/detail.jsp?board_id=<%//=board.getNotice_id()%>"><%//=board.getTitle() %></a></td>
-			<td><%//=board.getWriter() %></td>
-			<td><%//=board.getRegdate() %></td>
-			<td><%//=board.getHit() %></td>
+			<td><%=num--%></td>
+			<td><a href="/board/detail?notice_id=<%=board.getNotice_id()%>"><%=board.getTitle() %></a></td>
+			<td><%=board.getWriter() %></td>
+			<td><%=board.getRegdate() %></td>
+			<td><%=board.getHit() %></td>
 		</tr>
-		<%//} %>
+		<%} %>
 		<tr>
 			<td colspan="6" style="text-align:center">
 				[1][2][3]
