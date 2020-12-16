@@ -22,6 +22,15 @@
 		<url-pattern>/board/regist</url-pattern>		
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>listServlet</servlet-name>
+		<servlet-class>com.webapp1216.board.controller.ListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listServlet</servlet-name>
+		<url-pattern>/board/list</url-pattern>		
+	</servlet-mapping>
+	
 	
 </web-app>
 
