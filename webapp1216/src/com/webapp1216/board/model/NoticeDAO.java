@@ -31,14 +31,27 @@ public class NoticeDAO {
 	
 	public Notice select(int notice_id) {
 		Notice notice=null;
+		SqlSession sqlSession = manager.getSqlSession();
+		notice = sqlSession.selectOne("Notice.select", notice_id);
+		manager.close(sqlSession);
 		return notice;
 	}
 	public int update(Notice notice) {
 		int result=0;
+		SqlSession sqlSession = manager.getSqlSession();
+		result = sqlSession.delete("Notice.update", notice);
+		sqlSession.commit();//DML이므로  commit()
+		manager.close(sqlSession);
 		return result;
+
 	}
+	
 	public int delete(int notice_id) {
 		int result=0;
+		SqlSession sqlSession = manager.getSqlSession();
+		result = sqlSession.delete("Notice.delete", notice_id);
+		sqlSession.commit();//DML이므로  commit()
+		manager.close(sqlSession);
 		return result;
 	}
 }

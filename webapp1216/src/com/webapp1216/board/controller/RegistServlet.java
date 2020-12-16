@@ -55,7 +55,7 @@ public class RegistServlet extends HttpServlet{
 		}else {
 			out.print("<script>");
 			out.print("alert('등록성공');");
-			out.print("location.href='/board/list.jsp';");
+			out.print("location.href='/board/list';");
 			out.print("</script>");
 		}
 		
