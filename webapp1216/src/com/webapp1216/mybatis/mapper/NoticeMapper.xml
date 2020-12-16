@@ -12,5 +12,29 @@
 		select * from notice order by notice_id desc
 	</select>	
 	
+	<select id="select" parameterType="int" resultType="Notice">
+		select * from notice where notice_id=#{notice_id}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from notice where notice_id=#{notice_id}
+	</delete>
+	
+	<update id="update" parameterType="Notice">
+		update notice set title=#{title}, writer=#{writer}, content=#{content}  
+		where notice_id=#{notice_id}
+	</update>
 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+

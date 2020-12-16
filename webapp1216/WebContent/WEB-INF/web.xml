@@ -31,6 +31,23 @@
 		<url-pattern>/board/list</url-pattern>		
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>detailServlet</servlet-name>
+		<servlet-class>com.webapp1216.board.controller.DetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailServlet</servlet-name>
+		<url-pattern>/board/detail</url-pattern>		
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteServlet</servlet-name>
+		<servlet-class>com.webapp1216.board.controller.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteServlet</servlet-name>
+		<url-pattern>/board/delete</url-pattern>		
+	</servlet-mapping>
 	
 </web-app>
 
