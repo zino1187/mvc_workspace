@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import blood.model.BloodAdvisor;
 
-public class BloodController extends HttpServlet{
+public class BloodController{
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 받기 
 		String blood = request.getParameter("blood");
 		BloodAdvisor advisor = new BloodAdvisor();

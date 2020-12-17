@@ -1,4 +1,11 @@
+<%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%
+	//service 메서드 영역 고양이가 d이 jsp로부터 생성한 서블릿 클래스에는 
+	//각 종 예외가 throws 처리되어있기 때문에, jsp스크립틀릿 영역에서는 
+	//예외처리를 강요하지 않았던 것이다..
+	Connection con;
+%>
 <!DOCTYPE html>
 <html>
 <head>

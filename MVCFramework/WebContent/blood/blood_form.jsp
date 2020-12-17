@@ -8,7 +8,7 @@
 <script>
 function send(){
 	 var form = document.querySelector("form");
-	 form.action="/blood";
+	 form.action="/blood.do";
 	 form.method="get";
 	 form.submit(); //전송
 }

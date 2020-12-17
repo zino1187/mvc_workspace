@@ -8,7 +8,7 @@
 <script>
 function send(){
 	 var form = document.querySelector("form");
-	 form.action="/movie";
+	 form.action="/movie.do";
 	 form.method="post";
 	 form.submit(); //전송
 }

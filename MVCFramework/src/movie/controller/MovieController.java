@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import movie.model.MovieAdvisor;
 
-public class MovieController extends HttpServlet{
+public class MovieController{
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 받기 
 		request.setCharacterEncoding("utf-8");//파라미터에 대한 인코딩
 		String movie = request.getParameter("movie");
