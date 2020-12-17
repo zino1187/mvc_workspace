@@ -7,16 +7,17 @@ package blood.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.controller.Controller;
+
 import blood.model.BloodAdvisor;
 
-public class BloodController{
+public class BloodController implements Controller{
 	
-	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터 받기 
 		String blood = request.getParameter("blood");
 		BloodAdvisor advisor = new BloodAdvisor();
@@ -27,11 +28,12 @@ public class BloodController{
 		//현재로서는 세션에 담자 
 		HttpSession session=request.getSession();
 		session.setAttribute("msg", msg);
-		
-		//클라이언트로 하여금 지정한  url로 재접속을 유도하자!!명령하자 
-		response.sendRedirect("/blood/blood_result.jsp");
 	}
 	
+	@Override
+	public String getViewPage() {
+		return "/blood/blood_result.jsp";
+	}	
 }
 
 

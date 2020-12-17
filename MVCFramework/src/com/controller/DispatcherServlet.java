@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import blood.controller.BloodController;
 import movie.controller.MovieController;
 
 public class DispatcherServlet extends HttpServlet{
@@ -30,6 +31,8 @@ public class DispatcherServlet extends HttpServlet{
 	
 	//get or post상관없이, 모든 요청을 이 메서드에서 처리하자!!
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");//파라미터에 대한 인코딩
+		
 		//1단계:요청을 받는다!!
 		System.out.println("제가 요청을 받았어요 ㅜㅜ");
 		//클라이언트가 영화를 원하면? --> 영화담당 컨트롤러에게 전가
@@ -42,18 +45,20 @@ public class DispatcherServlet extends HttpServlet{
 		String uri = request.getRequestURI();
 		System.out.println("지금 들어온 요청은 "+uri);
 		
+		Controller controller=null;
+		
 		if(uri.equals("/movie.do")) {//영화를 원하면...			
 			System.out.println("영화전문 컨트롤러인 MovieController에게 전달할께요");
 			//하위 컨트롤러 생성 하기 
-			MovieController controller = new MovieController();
-			
-			//3단계: 알맞는 로직 객체에게 일 시킨다
-			controller.execute(request, response);
-			
+			controller = new MovieController();
 		}else if(uri.equals("/blood.do")) {
 			System.out.println("혈액형전문 컨트롤러인 BloodController에게 전달할께요");
-			
+			controller = new BloodController();
 		}
+		//2단계: 하위 컨트롤러에게 전달
+		controller.execute(request, response);//다형적으로 실행됨..(다형성)
+		//5단계: 알맞는결과 보여주기 
+		response.sendRedirect(controller.getViewPage());			
 	}
 	
 }
