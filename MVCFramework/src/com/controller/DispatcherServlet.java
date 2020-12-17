@@ -47,20 +47,31 @@ public class DispatcherServlet extends HttpServlet{
 		
 		Controller controller=null;
 		
+		String className=null;
+		
 		if(uri.equals("/movie.do")) {//영화를 원하면...			
-			System.out.println("영화전문 컨트롤러인 MovieController에게 전달할께요");
-			//하위 컨트롤러 생성 하기 
-			controller = new MovieController();
+			className="movie.controller.MovieController";
 		}else if(uri.equals("/blood.do")) {
-			System.out.println("혈액형전문 컨트롤러인 BloodController에게 전달할께요");
-			controller = new BloodController();
+			className="blood.controller.BloodController";
 		}
-		//2단계: 하위 컨트롤러에게 전달
-		controller.execute(request, response);//다형적으로 실행됨..(다형성)
-		//5단계: 알맞는결과 보여주기 
-		response.sendRedirect(controller.getViewPage());			
+		
+		try {
+			Class controllerClass= Class.forName(className); //클래스 로드
+			//인스턴스 생성
+			controller=(Controller)controllerClass.newInstance();
+			
+			//2단계: 하위 컨트롤러에게 전달
+			controller.execute(request, response);//다형적으로 실행됨..(다형성)
+			//5단계: 알맞는결과 보여주기 
+			response.sendRedirect(controller.getViewPage());			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
-	
 }
 
 
