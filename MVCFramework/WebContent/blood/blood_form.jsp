@@ -1,17 +1,5 @@
 <%@page import="blood.model.BloodAdvisor"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%
-	String blood = request.getParameter("blood");
-	out.print("전송된 혈액형은 "+blood);
-	out.print("<p>");
-	
-	//혈액형에 대한 판단 메시지 작성 및 출력
-	BloodAdvisor advisor = new BloodAdvisor();
-	String msg=advisor.getAdvice(blood);
-	
-	out.print(msg);
-	out.print("<p>");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +8,8 @@
 <script>
 function send(){
 	 var form = document.querySelector("form");
-	 form.action="/blood/blood_form.jsp";
+	 form.action="/blood";
+	 form.method="get";
 	 form.submit(); //전송
 }
 </script>
