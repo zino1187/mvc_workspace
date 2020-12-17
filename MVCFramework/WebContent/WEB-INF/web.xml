@@ -11,4 +11,13 @@
 		<url-pattern>/blood</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>movieServlet</servlet-name>
+		<servlet-class>movie.controller.MovieController</servlet-class>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>movieServlet</servlet-name>
+		<url-pattern>/movie</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
