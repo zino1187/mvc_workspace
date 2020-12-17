@@ -6,6 +6,10 @@
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>com.controller.DispatcherServlet</servlet-class>		
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/mapping/mapping.properties</param-value>			
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
