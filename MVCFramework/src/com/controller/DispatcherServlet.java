@@ -9,17 +9,45 @@
  * */
 package com.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import blood.controller.BloodController;
-import movie.controller.MovieController;
-
 public class DispatcherServlet extends HttpServlet{
+	
+	FileInputStream fis;
+	Properties props;
+	
+	//init은 서블릿의 생명주기에서, 최초 접속자에 의해 톰켓이 인스턴스를 생성하며, 이와 동시에 초기화 메서드로서 
+	//호출된다..
+	public void init(ServletConfig config) throws ServletException {
+		//getRealPath는 jsp의 내장객체 중 application에 대한 정보를 갖는 application 내장객체에서 지원함
+		ServletContext context=config.getServletContext();
+		
+		String contextConfigLocation=config.getInitParameter("contextConfigLocation");
+		String savePath=context.getRealPath(contextConfigLocation);
+		System.out.println(savePath);
+		
+		try {
+			fis = new FileInputStream(savePath);
+			props = new Properties();
+			props.load(fis);//스트림과 프로퍼티스 연결
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doRequest(request, response);
@@ -33,6 +61,7 @@ public class DispatcherServlet extends HttpServlet{
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");//파라미터에 대한 인코딩
 		
+				
 		//1단계:요청을 받는다!!
 		System.out.println("제가 요청을 받았어요 ㅜㅜ");
 		//클라이언트가 영화를 원하면? --> 영화담당 컨트롤러에게 전가
@@ -49,11 +78,8 @@ public class DispatcherServlet extends HttpServlet{
 		
 		String className=null;
 		
-		if(uri.equals("/movie.do")) {//영화를 원하면...			
-			className="movie.controller.MovieController";
-		}else if(uri.equals("/blood.do")) {
-			className="blood.controller.BloodController";
-		}
+		//if문 대신, 프로퍼티스 객체를 이용하여 key값으로 메모리 올려질 컨트롤러의 이름을 value 로 반환받자
+		className=props.getProperty(uri);
 		
 		try {
 			Class controllerClass= Class.forName(className); //클래스 로드
@@ -70,6 +96,19 @@ public class DispatcherServlet extends HttpServlet{
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	//서블릿의 생명주기 메서드 중 서블릿이 소멸할때 호출되는 메서드인 destory()에 , 스트림 등의 자원을 
+	//닫는 처리를 하자!!
+	@Override
+	public void destroy() {
+		if(fis!=null) {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

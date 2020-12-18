@@ -1,7 +1,8 @@
-<%@page import="com.webapp1216.board.model.Notice"%>
+
+<%@page import="com.model2.notice.domain.Notice"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	Notice board=(Notice)session.getAttribute("notice");
+	Notice board=(Notice)request.getAttribute("notice");
 %>
 <!DOCTYPE html>
 <html>
