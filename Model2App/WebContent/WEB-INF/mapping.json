@@ -1,0 +1,6 @@
+{
+	"controller":{
+		"/test.do" :"com.model2.test.TestController",
+		"/board/list.do" :"com.model2.board.controller.ListController"	
+	}
+}
