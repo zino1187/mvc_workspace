@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 </head>
-<body>
-<%=session.getAttribute("result") %>
+<body bgcolor="yellow">
+<%=request.getAttribute("result") %>
 </body>
 </html>

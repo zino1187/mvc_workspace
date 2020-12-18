@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -87,7 +88,16 @@ public class DispatcherServlet extends HttpServlet{
 		//동생 컨트롤러로부터 넘겨받은 키값을 이용하여 실제 페이지를 검색하고, 그 결과를 이용하여 
 		//클라이언트가 보게될 페이지를 보여주자!!
 		String viewPage=(String)viewMap.get(resultKey); //jsp 명칭 반환!!
-		response.sendRedirect(viewPage);
+		
+		//응답시  sendRedirect로 처리해할 경우가 있고, 글작성 후 리스트, 전혀 다른 페이지로 재접속을 시도
+		//하게 할때..
+		if(controller.isForward()) { //클라이언트로 하여금 새롭게 접속을 시도하게할 경우..
+			//때로는 forwarding 처리해야 할 경우가 있다..데이터를 유지하고싶을때..
+			RequestDispatcher dis=request.getRequestDispatcher(viewPage);
+			dis.forward(request, response);//응답없이, 서버상의 또 다른 자원으로 요청을 전달!!!
+		}else {
+			response.sendRedirect(viewPage);//세션 믿고 까불고있음...
+		}
 	}
 	
 	public void destroy() {

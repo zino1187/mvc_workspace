@@ -58,7 +58,7 @@ $(function(){
 });
 function regist(){
 	$("form").attr({
-		action:"/board/regist", //jsp가 아닌, 서블릿에게 요청
+		action:"/notice/regist.do", //jsp가 아닌, 서블릿에게 요청
 		method:"post"
 	});			
 	$("form").submit();
@@ -73,9 +73,8 @@ function regist(){
 			<input type="text" name="writer" placeholder="Your name.."> 
 			<textarea name="content" placeholder="Write something.." style="height: 200px"></textarea>
 			
-			<input type="file" name="photo"><p>
 			<input type="button" value="글등록"> 
-			<input type="button" value="목록보기" onClick="location.href='list.jsp'">
+			<input type="button" value="목록보기" onClick="location.href='/notice/list.jsp'">
 		</form>
 	</div>
 

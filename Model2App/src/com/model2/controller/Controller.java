@@ -16,6 +16,9 @@ public interface Controller {
 	//어떤 뷰페이지를 보여줘야 할지 결정 
 	//만일 하위 컨트롤러가 이 업무를 처리하지 않으면, DispatcherServlet에서 if문으로 처리해야한다..
 	public String getResultView();
+	
+	//요청을 끊어야할지, 유지해야할지를 결정하는 메서드 
+	public boolean isForward();
 }
 
 

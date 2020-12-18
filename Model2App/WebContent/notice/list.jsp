@@ -1,11 +1,11 @@
+<%@page import="com.model2.notice.domain.Notice"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="com.webapp1216.board.model.Notice"%>
 <%@page import="java.util.List"%>
 <%@page import="common.board.Pager"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	//jsp 에서는 이미 내장객체로 지원되기 때문에  session 으로 사용하면 됨 
-	List list = (List)session.getAttribute("noticeList");
+	List list = (List)request.getAttribute("noticeList");
 	Pager pager = new Pager();
 	pager.init(request, list); //페이지 처리에 대한 계산!!
 %>
