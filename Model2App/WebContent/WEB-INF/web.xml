@@ -4,6 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>Model2App</display-name>
+	
+	<resource-ref>
+		<res-ref-name>jdbc/mysql</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
