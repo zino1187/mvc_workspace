@@ -84,9 +84,18 @@ function getCommentList(){
 			board_id : <%=board.getBoard_id()%>
 		}, 
 		success:function(result){
-			alert(result);
+			//result 에는 서버에서 전송한 json 배열이 들어있다..이 배열을이용하여 아래의 컨텐츠를
+			//완성하기!! 4시 10분까지...
+			$("#list-area").html(""); //초기화 시킨 후
+			
+			var tag="<div class=\"reply-list\">";
+			tag+="<p style=\"width:75%\">댓글 내용 샘플...</p>"; 
+			tag+="<p style=\"width:15%\">홍길동</p>";
+			tag+="<p style=\"width:10%\">2020-12-25</p>"; 
+			tag+="</div>";
+			
+			$("#list-area").html(tag);  //innerHTML과 동일
 		}
-		
 	});	
 }
 
@@ -106,6 +115,7 @@ function registComment(){
 		//success 우측에 명시된 익명함수가 동작하게 된다.. 
 		success:function(result){
 			alert("서버로 부터 받은 결과 데이터 "+result);
+			
 		}		
 	});
 	
@@ -131,13 +141,7 @@ function registComment(){
 		<input type="text" name="author" placeholder="작성자 입력.." style="width:15%">
 		<button type="button" onClick="registComment()">댓글등록</button>
 	</div> 
-	
-	<div class="reply-list">
-		<p style="width:75%">댓글 내용 샘플...</p> 
-		<p style="width:15%">홍길동</p> 
-		<p style="width:10%">2020-12-25</p> 
-	</div>
-	   
+	<div id="list-area"></div>	   
   </form>
 </div>
 
