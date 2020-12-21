@@ -60,16 +60,17 @@ input[type=button]:hover {
 $(function(){
 	CKEDITOR.replace("content"); //textarea의 id가 content인 컴포넌트를 편집기 스킨으로 변경
 	
-	$($("input[type='button']")[0]).click(function(){
-		regist();
+	$($("input[type='button']")[0]).click(function(){ //수정버튼
+		edit();//동기방식으로 요청하겠다
 	});
+	
 	getCommentList(); //댓글 목록 비동기로 가져오기!!!
 });
 
 //글등록 요청
-function regist(){
+function edit(){
 	$("form").attr({
-		action:"/board/regist.do",
+		action:"/board/edit.do",
 		method:"post"
 	});		
 	$("form").submit();
@@ -141,11 +142,13 @@ function registComment(){
 
 <div class="container">
   <form>
+  	<input type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
     <input type="text" name="title" value="<%=board.getTitle()%>">
     <input type="text" name="writer" value="<%=board.getWriter()%>">
     <textarea id="content" name="content" style="height:200px"><%=board.getContent() %></textarea>
     
-    <input type="button" value="글등록">
+    <input type="button" value="글수정">
+    <input type="button" value="글삭제">
     <input type="button" value="목록보기" onClick="location.href='/board/list.do'">
 	<div class="reply-box">
 		<input type="text" name="msg" placeholder="댓글 입력.." style="width:75%">

@@ -7,6 +7,7 @@ public class Board {
 	private String content;
 	private String regdate;
 	private int hit;
+	private int cnt;
 	
 	public int getBoard_id() {
 		return board_id;
@@ -43,6 +44,12 @@ public class Board {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 	
