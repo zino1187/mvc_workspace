@@ -3,14 +3,17 @@
 		"/test.do" :"com.model2.test.TestController",
 		"/notice/list.do" :"com.model2.notice.controller.ListController",	
 		"/notice/regist.do" :"com.model2.notice.controller.RegistController",
-		"/notice/detail.do" :"com.model2.notice.controller.DetailController"
+		"/notice/detail.do" :"com.model2.notice.controller.DetailController",
+		"/board/list.do" :"com.model2.board.controller.ListController",
+		"/board/regist.do" :"com.model2.board.controller.RegistController"
 	},
 	
 	"view":{
 		"/view/test/result":"/test/result.jsp",
 		"/view/notice/list":"/notice/list.jsp",
 		"/view/notice/regiest":"/notice/list.do",
-		"/view/notice/detail":"/notice/detail.jsp"
-		
+		"/view/notice/detail":"/notice/detail.jsp",
+		"/view/board/list":"/board/list.jsp", 
+		"/view/board/regist":"/board/list.do" 
 	}
 }
