@@ -19,6 +19,7 @@
   <mappers>
     <mapper resource="com/model2/mybatis/mappers/NoticeMapper.xml"/>
     <mapper resource="com/model2/mybatis/mappers/BoardMapper.xml"/>
+    <mapper resource="com/model2/mybatis/mappers/CommentMapper.xml"/>
   </mappers>
 </configuration>
 

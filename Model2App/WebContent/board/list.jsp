@@ -1,9 +1,13 @@
+<%@page import="com.model2.domain.Board"%>
+<%@page import="common.board.Pager"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	//포워딩을 통해 넘겨받은 request 객체에 담겨진 데이터 꺼내기
-	List boardList = (List)request.getAttribute("boardList");
+	List<Board> boardList = (List)request.getAttribute("boardList");
 	out.print("게시물 수는 "+boardList.size());
+	Pager pager = new Pager();
+	pager.init(request, boardList);
 %>
 <!DOCTYPE html>
 <html>
@@ -31,27 +35,30 @@ tr:nth-child(even) {
 
 	<table>
 		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Points</th>
+			<th>No</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>등록일</th>
+			<th>조회수</th>
 		</tr>
+		<%
+			// ++ 혹은 -- 할 대상은 변수로 받아놓고 처리해야 편하다
+			int curPos=pager.getCurPos();
+			int num = pager.getNum();
+		%>
+		<%for(int i=1;i<=pager.getPageSize();i++){%>
+		<%if(num<1)break; %>
+		<%Board board = boardList.get(curPos++);%>
 		<tr>
-			<td>Jill</td>
-			<td>Smith</td>
-			<td>50</td>
+			<td><%=num-- %></td>
+			<td><a href="/board/detail.do?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a></td>
+			<td><%=board.getWriter() %></td>
+			<td><%=board.getRegdate().substring(0,10) %></td>
+			<td><%=board.getHit() %></td>
 		</tr>
+		<%}%>
 		<tr>
-			<td>Eve</td>
-			<td>Jackson</td>
-			<td>94</td>
-		</tr>
-		<tr>
-			<td>Adam</td>
-			<td>Johnson</td>
-			<td>67</td>
-		</tr>
-		<tr>
-			<td colspan="3" style="text-align:center">
+			<td colspan="5" style="text-align:center">
 				[1][2][3]
 			</td>
 		</tr>

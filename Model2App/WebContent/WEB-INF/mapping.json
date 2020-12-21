@@ -5,7 +5,10 @@
 		"/notice/regist.do" :"com.model2.notice.controller.RegistController",
 		"/notice/detail.do" :"com.model2.notice.controller.DetailController",
 		"/board/list.do" :"com.model2.board.controller.ListController",
-		"/board/regist.do" :"com.model2.board.controller.RegistController"
+		"/board/regist.do" :"com.model2.board.controller.RegistController",
+		"/board/detail.do" :"com.model2.board.controller.DetailController",
+		"/comment/regist.do" :"com.model2.comment.controller.RegistController",
+		"/comment/list.do" :"com.model2.comment.controller.ListController"
 	},
 	
 	"view":{
@@ -14,6 +17,8 @@
 		"/view/notice/regiest":"/notice/list.do",
 		"/view/notice/detail":"/notice/detail.jsp",
 		"/view/board/list":"/board/list.jsp", 
-		"/view/board/regist":"/board/list.do" 
+		"/view/board/regist":"/board/list.do",
+		"/view/board/detail":"/board/detail.jsp",
+		"/view/comment/list":"/board/comment_list.jsp"
 	}
 }
