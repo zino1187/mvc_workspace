@@ -84,16 +84,23 @@ function getCommentList(){
 			board_id : <%=board.getBoard_id()%>
 		}, 
 		success:function(result){
+			//서버에서 전송되어온 데이터는 json 객체가 아닌, 문자열일 뿐이다.. 
+			// json={name:"ddd"}
+			console.log(result.list.length);
+			
 			//result 에는 서버에서 전송한 json 배열이 들어있다..이 배열을이용하여 아래의 컨텐츠를
 			//완성하기!! 4시 10분까지...
 			$("#list-area").html(""); //초기화 시킨 후
 			
-			var tag="<div class=\"reply-list\">";
-			tag+="<p style=\"width:75%\">댓글 내용 샘플...</p>"; 
-			tag+="<p style=\"width:15%\">홍길동</p>";
-			tag+="<p style=\"width:10%\">2020-12-25</p>"; 
-			tag+="</div>";
-			
+			var tag="";
+			for(var i=0;i<result.list.length;i++){
+				var json = result.list[i];
+				tag+="<div class=\"reply-list\">";
+				tag+="<p style=\"width:75%\">"+json.msg+"</p>"; 
+				tag+="<p style=\"width:15%\">"+json.author+"</p>";
+				tag+="<p style=\"width:10%\">"+json.cdate+"</p>"; 
+				tag+="</div>";
+			}
 			$("#list-area").html(tag);  //innerHTML과 동일
 		}
 	});	

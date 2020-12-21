@@ -1,6 +1,6 @@
 <%@page import="com.model2.domain.Comment"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/json; charset=utf-8"%>
 <%
 	List<Comment> commentList  = (List)request.getAttribute("commentList");
 	
