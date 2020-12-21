@@ -32,18 +32,17 @@ public class RegistController implements Controller{
 		comment.setBoard_id(Integer.parseInt(board_id));
 		
 		//등록 메서드 호출!!
-		commentDAO.insert(comment);
+		int result=commentDAO.insert(comment);
 		
-		//4단계 생략: 저장할 것이 없다!!
-		//ListController의 execute() 메서드 호출 
-		
+		//4단계 생략: DmL 수행결과를 저장하겠다.
+		request.setAttribute("result", result); //boxing...
 	}
 	
 	public String getResultView() {
-		return null;
+		return "/view/comment/regist"; //등록 결과를 클라이언트에게 보여줄 jsp 키값
 	}
 	public boolean isForward() {
-		return false;
+		return true;
 	}
 	
 }

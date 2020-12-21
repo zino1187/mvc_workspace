@@ -9,10 +9,11 @@
 	sb.append("\"list\":[");
 	for(int i=0;i<commentList.size();i++){
 		Comment comment=commentList.get(i);
+		
 		sb.append("{");
-		sb.append("\"msg\":\"ddd\",");
-		sb.append("\"author\":\"batman\",");
-		sb.append("\"cdate\":\"2020-12-25\"");
+		sb.append("\"msg\":\""+comment.getMsg()+"\",");
+		sb.append("\"author\":\""+comment.getAuthor()+"\",");
+		sb.append("\"cdate\":\""+comment.getCdate().substring(0,10)+"\"");
 		if(i < commentList.size()-1){
 			sb.append("},");
 		}else{

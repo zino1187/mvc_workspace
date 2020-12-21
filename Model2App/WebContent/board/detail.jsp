@@ -121,8 +121,12 @@ function registComment(){
 		//피드백은 success로 받는다, 즉 서버에서 에러없이 데이터가 결과값이 전송되면
 		//success 우측에 명시된 익명함수가 동작하게 된다.. 
 		success:function(result){
-			alert("서버로 부터 받은 결과 데이터 "+result);
-			
+			//alert("서버로 부터 받은 결과 데이터 "+result);
+			if(result==1){
+				getCommentList();
+			}else{
+				alert("등록실패");
+			}
 		}		
 	});
 	

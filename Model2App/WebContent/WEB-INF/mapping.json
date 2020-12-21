@@ -19,6 +19,7 @@
 		"/view/board/list":"/board/list.jsp", 
 		"/view/board/regist":"/board/list.do",
 		"/view/board/detail":"/board/detail.jsp",
-		"/view/comment/list":"/board/comment_list.jsp"
+		"/view/comment/list":"/board/comment_list.jsp",
+		"/view/comment/regist":"/board/comment_regist.jsp"
 	}
 }
